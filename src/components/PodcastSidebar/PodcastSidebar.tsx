@@ -1,7 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
+
 import type { Podcast } from '@/types/podcast';
+
 import styles from './PodcastSidebar.module.css';
+
+interface PodcastSidebarProps {
+  podcast: Podcast;
+  showBackLink?: boolean;
+}
 
 function stripHtml(html: string): string {
   return html
@@ -17,7 +24,10 @@ function stripHtml(html: string): string {
     .trim();
 }
 
-export function PodcastSidebar({ podcast }: { podcast: Podcast }) {
+export function PodcastSidebar({
+  podcast,
+  showBackLink = false,
+}: PodcastSidebarProps) {
   return (
     <aside className={styles.sidebar}>
       <Link href={`/podcast/${podcast.id}`} className={styles.imageLink}>
@@ -39,6 +49,12 @@ export function PodcastSidebar({ podcast }: { podcast: Podcast }) {
           <p className={styles.descriptionTitle}>Description:</p>
           {stripHtml(podcast.description)}
         </div>
+
+        {showBackLink && (
+          <Link href={`/podcast/${podcast.id}`} className={styles.backLink}>
+            ← Return to podcast
+          </Link>
+        )}
       </div>
     </aside>
   );
