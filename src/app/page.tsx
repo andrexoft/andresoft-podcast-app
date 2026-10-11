@@ -1,8 +1,18 @@
-import { getTopPodcasts } from "@/services/podcastService";
+"use client";
+
+import { usePodcasts } from "@/hooks/usePodcasts";
 import styles from "./page.module.css";
 
-export default async function Home() {
-  const podcasts = await getTopPodcasts();
+export default function Home() {
+  const { podcasts, isLoading, error } = usePodcasts();
+
+  if (isLoading) {
+    return <main className={styles.page}>Cargando podcasts...</main>;
+  }
+
+  if (error) {
+    return <main className={styles.page}>{error}</main>;
+  }
 
   return (
     <main className={styles.page}>
