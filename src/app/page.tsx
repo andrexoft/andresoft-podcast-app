@@ -1,9 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-
-import { usePodcasts } from "@/hooks/usePodcasts";
+import { PodcastGrid } from "@/components/PodcastGrid/PodcastGrid";
 import { SearchBar } from "@/components/SearchBar/SearchBar";
+import { usePodcasts } from "@/hooks/usePodcasts";
+
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -50,29 +51,15 @@ export default function Home() {
 
       <p aria-live="polite">
         {filteredPodcasts.length}{" "}
-        {filteredPodcasts.length === 1 ? "podcast encontrado" : "podcasts encontrados"}
+        {filteredPodcasts.length === 1
+          ? "podcast encontrado"
+          : "podcasts encontrados"}
       </p>
 
       {filteredPodcasts.length === 0 ? (
         <p>No se han encontrado podcasts que coincidan con tu búsqueda.</p>
       ) : (
-        <section className={styles.catalog} aria-label="Podcasts populares">
-          {filteredPodcasts.map((podcast) => (
-            <article className={styles.card} key={podcast.id}>
-              <img
-                className={styles.image}
-                src={podcast.image}
-                alt={`Portada de ${podcast.title}`}
-                loading="lazy"
-              />
-
-              <div className={styles.cardContent}>
-                <h2 className={styles.title}>{podcast.title}</h2>
-                <p className={styles.author}>{podcast.author}</p>
-              </div>
-            </article>
-          ))}
-        </section>
+        <PodcastGrid podcasts={filteredPodcasts} />
       )}
     </main>
   );
