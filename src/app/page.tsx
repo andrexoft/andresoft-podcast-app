@@ -34,33 +34,15 @@ export default function Home() {
   }
 
   return (
-    <main className={styles.page}>
-      <header className={styles.header}>
-        <p className={styles.eyebrow}>PODCAST EXPLORER</p>
+    <main className={styles.main}>
+      <div className={styles.toolbar}>
+        <p className={styles.count}>{filteredPodcasts.length}</p>
 
-        <h1>Descubre tu próximo podcast</h1>
-
-        <p className={styles.description}>
-          Explora los podcasts más populares y encuentra tu próxima escucha.
-        </p>
-      </header>
-
-      <section aria-label="Buscar podcasts">
         <SearchBar value={search} onChange={setSearch} />
-      </section>
-
-      <p aria-live="polite">
-        {filteredPodcasts.length}{" "}
-        {filteredPodcasts.length === 1
-          ? "podcast encontrado"
-          : "podcasts encontrados"}
-      </p>
-
-      {filteredPodcasts.length === 0 ? (
-        <p>No se han encontrado podcasts que coincidan con tu búsqueda.</p>
-      ) : (
-        <PodcastGrid podcasts={filteredPodcasts} />
-      )}
+      </div>
+      
+      <PodcastGrid podcasts={filteredPodcasts} />
     </main>
+ 
   );
 }

@@ -1,6 +1,4 @@
-"use client";
-
-import styles from "./SearchBar.module.css";
+import styles from './SearchBar.module.css';
 
 interface SearchBarProps {
   value: string;
@@ -9,13 +7,15 @@ interface SearchBarProps {
 
 export function SearchBar({ value, onChange }: SearchBarProps) {
   return (
-    <input
-      className={styles.search}
-      type="search"
-      value={value}
-      onChange={(event) => onChange(event.target.value)}
-      placeholder="Buscar podcasts..."
-      aria-label="Buscar podcasts por título o autor"
-    />
+    <div className={styles.container}>
+      <input
+        type="search"
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        placeholder="Filter podcasts..."
+        aria-label="Filter podcasts"
+        className={styles.input}
+      />
+    </div>
   );
 }
