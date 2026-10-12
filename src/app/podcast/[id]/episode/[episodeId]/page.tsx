@@ -3,6 +3,7 @@
 import { useParams } from 'next/navigation';
 import PodcastEpisodeDetail from '@/components/PodcastEpisodeDetail/PodcastEpisodeDetail';
 import { usePodcastDetail } from '@/hooks/usePodcastDetail';
+import { Loading } from '@/components/Loading/Loading';
 
 export default function PodcastEpisodeDetailPage() {
   const params = useParams<{
@@ -13,11 +14,11 @@ export default function PodcastEpisodeDetailPage() {
   const { podcast, isLoading } = usePodcastDetail(params.id);
 
   if (isLoading) {
-    return <p>Cargando episode</p>;
+    return <Loading message="Loading episode detail..." />;
   }
 
   if (!podcast) {
-    return <main>Podcast no encontrado</main>;
+    return <main>Episode not found</main>;
   }
 
   const episode = podcast.episodes.find((item) => item.id === params.episodeId);

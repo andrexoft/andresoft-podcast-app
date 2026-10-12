@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { PodcastGrid } from "@/components/PodcastGrid/PodcastGrid";
 import { SearchBar } from "@/components/SearchBar/SearchBar";
 import { usePodcasts } from "@/hooks/usePodcasts";
-
+import { Loading } from '@/components/Loading/Loading';
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -26,7 +26,7 @@ export default function Home() {
   }, [podcasts, search]);
 
   if (isLoading) {
-    return <main className={styles.page}>Cargando podcasts...</main>;
+    return <Loading message="Loading podcast..." />;
   }
 
   if (error) {
