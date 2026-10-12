@@ -13,7 +13,7 @@ export function PodcastGrid({ podcasts }: PodcastGridProps) {
         <PodcastCard
           key={podcast.id}
           podcast={podcast}
-          priority={index === 0}
+          priority={index <= 1}
         />
       ))}
     </div>
