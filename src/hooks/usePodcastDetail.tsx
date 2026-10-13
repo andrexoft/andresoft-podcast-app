@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from 'react';
 
-import { getPodcastDetail } from '@/services/podcastDetailService.ts';
+import { getPodcastDetail } from '@/services/podcastDetailService';
 import { getCachedData, setCachedData } from '@/lib/cache';
-import type { Podcast, PodcastDetail } from '@/types/podcast';
+import type { Podcast } from '@/types/podcast';
+import type { PodcastDetail } from '@/types/podcastDetail';
 
 interface UsePodcastDetailResult {
   podcast: PodcastDetail | null;
